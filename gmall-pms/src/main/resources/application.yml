@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: gmall-pms
+  registry:
+    address: zookeeper://129.211.77.216:2181
+  protocol:
+    name: dubbo
+    port: 20880
+  consumer:
+    check: false

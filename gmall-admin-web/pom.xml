@@ -12,6 +12,7 @@
     <artifactId>gmall-admin-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gmall-admin-web</name>
+
     <description>后台系统对接前端的web项目</description>
 
     <properties>

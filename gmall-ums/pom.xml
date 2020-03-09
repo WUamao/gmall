@@ -8,9 +8,11 @@
         <version>2.1.14.BUILD-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.amao.gmall</groupId>
     <artifactId>gmall-ums</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>gmall-ums</name>
     <description>用户管理系统</description>
 
@@ -19,6 +21,14 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.amao.gmall</groupId>
+            <artifactId>gmall-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
