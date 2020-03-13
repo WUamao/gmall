@@ -1,10 +1,13 @@
 package com.amao.gmall.pms.entity;
 
+import com.amao.gmall.vo.producct.PmsProductCategoryWithChildrenItem;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -69,6 +72,7 @@ public class ProductCategory implements Serializable {
     @ApiModelProperty(value = "描述")
     @TableField("description")
     private String description;
+
 
 
 }

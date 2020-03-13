@@ -1,6 +1,7 @@
 package com.amao.gmall.pms.service;
 
 import com.amao.gmall.pms.entity.ProductAttribute;
+import com.amao.gmall.vo.PageInfoVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ProductAttributeService extends IService<ProductAttribute> {
 
+    PageInfoVo getCategoryAttributes(Long cid, Integer pageSize, Integer pageNum);
 }

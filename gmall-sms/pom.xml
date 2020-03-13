@@ -8,6 +8,7 @@
         <version>2.1.14.BUILD-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.amao.gmall</groupId>
     <artifactId>gmall-sms</artifactId>
     <version>0.0.1-SNAPSHOT</version>

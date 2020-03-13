@@ -1,6 +1,7 @@
 package com.amao.gmall.pms.service;
 
 import com.amao.gmall.pms.entity.Brand;
+import com.amao.gmall.vo.PageInfoVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BrandService extends IService<Brand> {
 
+    PageInfoVo brandPageInfo(String keyword, Integer pageNum, Integer pageSize);
 }

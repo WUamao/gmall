@@ -13,7 +13,6 @@ import java.sql.SQLException;
  * @author amao
  * @date 2020/3/9 20:48
  */
-
 @Configuration
 public class GmallShardingJdbcConfig {
 
