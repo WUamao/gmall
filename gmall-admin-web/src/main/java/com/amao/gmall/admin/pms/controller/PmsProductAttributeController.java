@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * 商品属性管理Controller
  */
+@CrossOrigin
 @RestController
 @Api(tags = "PmsProductAttributeController", description = "商品属性管理")
 @RequestMapping("/productAttribute")
@@ -26,13 +27,14 @@ public class PmsProductAttributeController {
 
     @ApiOperation("根据分类查询属性列表或参数列表")
     @ApiImplicitParams({@ApiImplicitParam(name = "type", value = "0表示属性，1表示参数", required = true, paramType = "query", dataType = "integer")})
-    @GetMapping(value = "/category/list/{cid}")
-    public Object getList(@PathVariable Long cid,
+    @GetMapping(value = "/list/{cid}")
+    public Object getList(@PathVariable("cid") Long cid,
                           @RequestParam(value = "type") Integer type,
                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        //TODO 根据分类查询属性列表或参数列表
-        PageInfoVo pageInfoVo = productAttributeService.getCategoryAttributes(cid,pageSize,pageNum);
+
+        //查出这个属性分类下所有的销售属性和基本参数
+        PageInfoVo pageInfoVo = productAttributeService.getCategoryAttributes(cid,type,pageSize,pageNum);
         return new CommonResult().success(pageInfoVo);
     }
 

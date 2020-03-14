@@ -3,6 +3,7 @@ package com.amao.gmall.admin.pms.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.amao.gmall.pms.service.ProductAttributeCategoryService;
 import com.amao.gmall.to.CommonResult;
+import com.amao.gmall.vo.PageInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
  * 商品属性分类Controller
  * Created by atguigu 4/26.
  */
+@CrossOrigin
 @RestController
 @Api(tags = "PmsProductAttributeCategoryController", description = "商品属性分类管理")
 @RequestMapping("/productAttribute/category")
@@ -54,7 +56,9 @@ public class PmsProductAttributeCategoryController {
     @ResponseBody
     public Object getList(@RequestParam(defaultValue = "5") Integer pageSize, @RequestParam(defaultValue = "1") Integer pageNum) {
         //TODO 分页获取所有商品属性分类
-        return new CommonResult().success(null);
+        PageInfoVo pageInfoVo = productAttributeCategoryService.productAttributeCategoryPageInfo(pageNum,pageSize);
+
+        return new CommonResult().success(pageInfoVo);
     }
 
     @ApiOperation("获取所有商品属性分类及其下属性【难度较高】")

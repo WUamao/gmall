@@ -2,6 +2,7 @@ package com.amao.gmall.pms.service;
 
 import com.amao.gmall.pms.entity.Product;
 import com.amao.gmall.vo.PageInfoVo;
+import com.amao.gmall.vo.producct.PmsProductParam;
 import com.amao.gmall.vo.producct.PmsProductQueryParam;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ProductService extends IService<Product> {
 
     PageInfoVo productPageInfo(PmsProductQueryParam productQueryParam);
+
+    void saveProduct(PmsProductParam productParam);
 }

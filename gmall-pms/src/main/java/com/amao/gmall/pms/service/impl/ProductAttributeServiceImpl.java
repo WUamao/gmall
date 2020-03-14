@@ -28,12 +28,14 @@ public class ProductAttributeServiceImpl extends ServiceImpl<ProductAttributeMap
     ProductAttributeMapper productAttributeMapper;
 
     @Override
-    public PageInfoVo getCategoryAttributes(Long cid, Integer pageSize, Integer pageNum) {
+    public PageInfoVo getCategoryAttributes(Long cid,Integer type, Integer pageSize, Integer pageNum) {
 
-        Page<ProductAttribute> page = new Page<>(pageNum, pageSize);
-        QueryWrapper<ProductAttribute> wrapper = new QueryWrapper<ProductAttribute>().eq("cid", cid);
-        IPage<ProductAttribute> selectPage = productAttributeMapper.selectPage(page, wrapper);
-        PageInfoVo pageInfoVo =  PageInfoVo.getVo(selectPage, pageNum.longValue());
-        return pageInfoVo;
+        QueryWrapper<ProductAttribute> eq = new QueryWrapper<ProductAttribute>()
+                .eq("product_attribute_category_id", cid)
+                .eq("type", type);
+
+        IPage<ProductAttribute> page = productAttributeMapper.selectPage(new Page<ProductAttribute>(pageNum, pageSize), eq);
+
+        return PageInfoVo.getVo(page,pageSize.longValue());
     }
 }

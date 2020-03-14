@@ -15,19 +15,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class GmallSwagger2Config {
 
-    @Bean("后台用户模块")
-    public Docket userApis() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("后台用户模块")
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
-                .paths(PathSelectors.regex("/admin.*"))
-                .build()
-                .apiInfo(apiInfo())
-                .enable(true);
-    }
+//    @Bean("后台用户模块")
+//    public Docket userApis() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .groupName("后台用户模块")
+//                .select()
+//                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+//                .paths(PathSelectors.regex("/admin.*"))
+//                .build()
+//                .apiInfo(apiInfo())
+//                .enable(true);
+//    }
 
-    private ApiInfo apiInfo() {
+    public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("谷粒商城-后台管理系统平台接口文档")
                 .description("提供pms、oms、ums、cms、sms模块的文档")

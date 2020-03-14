@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Data
 public class PmsProductParam extends Product implements Serializable {
+
     @ApiModelProperty("商品阶梯价格设置")
     private List<ProductLadder> productLadderList;
     @ApiModelProperty("商品满减价格设置")
@@ -22,6 +23,7 @@ public class PmsProductParam extends Product implements Serializable {
     private List<SkuStock> skuStockList;
     @ApiModelProperty("商品参数及自定义规格属性")
     private List<ProductAttributeValue> productAttributeValueList;
+
     //@ApiModelProperty("专题和商品关系")
     //private List<SubjectProductRelation> subjectProductRelationList;
     //@ApiModelProperty("优选专区和商品的关系")

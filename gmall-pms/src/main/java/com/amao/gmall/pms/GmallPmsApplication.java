@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * 1、配置整合dubbo
@@ -84,6 +85,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *  如果要真的开启什么功能就显式的加上这个注解。。。。
  *
  */
+@EnableAspectJAutoProxy(exposeProxy = true)
 @EnableDubbo
 @MapperScan(basePackages = "com.amao.gmall.pms.mapper")
 @SpringBootApplication
