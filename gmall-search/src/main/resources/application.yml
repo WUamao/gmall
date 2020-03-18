@@ -1,0 +1,13 @@
+spring:
+  elasticsearch:
+    jest:
+      uris: [http://120.78.213.182:9200,http://120.78.213.182:9201,http://120.78.213.182:9202]
+
+dubbo:
+  protocol:
+    port: 20920
+    name: dubbo
+  registry:
+    address: zookeeper://129.211.77.216:2181
+  application:
+    name: gmall-search

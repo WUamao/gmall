@@ -59,9 +59,7 @@ public class PmsProductController {
 
     @ApiOperation("查询商品")
     @GetMapping(value = "/list")
-    public Object getList(PmsProductQueryParam productQueryParam,
-                          @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                          @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+    public Object getList(PmsProductQueryParam productQueryParam) {
         //TODO 查询商品
         PageInfoVo pageInfoVo =  productService.productPageInfo(productQueryParam);
         return new CommonResult().success(pageInfoVo);
@@ -87,6 +85,9 @@ public class PmsProductController {
     @PostMapping(value = "/update/publishStatus")
     public Object updatePublishStatus(@RequestParam("ids") List<Long> ids,
                                      @RequestParam("publishStatus") Integer publishStatus) {
+
+        productService.updatePublishStatus(ids,publishStatus);
+
         //TODO 批量上下架
         return new CommonResult().success(null);
     }
