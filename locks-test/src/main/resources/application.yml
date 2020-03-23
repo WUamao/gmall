@@ -1,0 +1,15 @@
+
+spring:
+#  main:
+#    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  redis:
+    host: 120.78.213.182 #129.211.77.216
+    port: 6379
+    jedis:
+      pool:
+        max-active: 50
+        max-idle: 8
+        max-wait: 10000
+
+server:
+  port: 8084
