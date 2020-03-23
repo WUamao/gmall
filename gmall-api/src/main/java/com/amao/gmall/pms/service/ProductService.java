@@ -1,6 +1,7 @@
 package com.amao.gmall.pms.service;
 
 import com.amao.gmall.pms.entity.Product;
+import com.amao.gmall.to.es.EsProduct;
 import com.amao.gmall.vo.PageInfoVo;
 import com.amao.gmall.vo.producct.PmsProductParam;
 import com.amao.gmall.vo.producct.PmsProductQueryParam;
@@ -25,4 +26,8 @@ public interface ProductService extends IService<Product> {
     void updatePublishStatus(List<Long> ids, Integer publishStatus);
 
     Product productInfo(Long id);
+
+    EsProduct productAllInfo(Long id);
+
+    EsProduct produSkuInfo(Long id);
 }

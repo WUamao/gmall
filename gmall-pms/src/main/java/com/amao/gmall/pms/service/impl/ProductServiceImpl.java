@@ -8,9 +8,10 @@ import com.amao.gmall.to.es.EsProduct;
 import com.amao.gmall.to.es.EsProductAttributeValue;
 import com.amao.gmall.to.es.EsSkuProductInfo;
 import io.searchbox.client.JestClient;
-import io.searchbox.core.Delete;
-import io.searchbox.core.DocumentResult;
-import io.searchbox.core.Index;
+import io.searchbox.core.*;
+import org.apache.lucene.search.join.ScoreMode;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.aop.framework.AopContext;
 import com.amao.gmall.pms.service.ProductService;
 import com.amao.gmall.vo.PageInfoVo;
@@ -65,6 +66,52 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     //当前线程共享同样的数据
     ThreadLocal<Long> threadLocal = new ThreadLocal<>();
+
+
+
+    @Override
+    public EsProduct productAllInfo(Long id) {
+        EsProduct esProduct = null;
+        //根据id查出商品
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.termQuery("id",id));
+
+        Search build = new Search.Builder(builder.toString())
+                .addIndex(EsConstant.PRODUCT_ES_INDEX)
+                .addType(EsConstant.PRODUCT_INFO_ES_TYPE)
+                .build();
+        try {
+            SearchResult execute = jestClient.execute(build);
+            List<SearchResult.Hit<EsProduct, Void>> hits = execute.getHits(EsProduct.class);
+            esProduct = hits.get(0).source;
+        } catch (IOException e) {
+        }
+
+        return esProduct;
+    }
+
+    @Override
+    public EsProduct produSkuInfo(Long id) {
+        EsProduct esProduct = null;
+        //按照id查出商品
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.nestedQuery("skuProductInfos",QueryBuilders.termQuery("skuProductInfos.id",id), ScoreMode.None));
+
+        Search build = new Search.Builder(builder.toString())
+                .addIndex(EsConstant.PRODUCT_ES_INDEX)
+                .addType(EsConstant.PRODUCT_INFO_ES_TYPE)
+                .build();
+
+        try {
+            SearchResult execute = jestClient.execute(build);
+
+            List<SearchResult.Hit<EsProduct, Void>> hits = execute.getHits(EsProduct.class);
+            esProduct = hits.get(0).source;
+
+        } catch (Exception e) {
+        }
+        return esProduct;
+    }
 
 
     @Override
@@ -304,6 +351,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Product productInfo(Long id) {
         return productMapper.selectById(id);
     }
+
 
     /**
      * CudSerivce：增删改service

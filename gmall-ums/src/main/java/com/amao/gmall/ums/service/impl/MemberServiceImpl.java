@@ -1,9 +1,11 @@
 package com.amao.gmall.ums.service.impl;
 
+import com.alibaba.dubbo.remoting.zookeeper.ZookeeperClient;
 import com.amao.gmall.ums.entity.Member;
 import com.amao.gmall.ums.mapper.MemberMapper;
 import com.amao.gmall.ums.service.MemberService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +18,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> implements MemberService {
+
 
 }
