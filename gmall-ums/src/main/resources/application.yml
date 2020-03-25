@@ -1,0 +1,21 @@
+dubbo:
+  application:
+    name: gmall-ums
+  registry:
+    address: zookeeper://129.211.77.216:2181
+  protocol:
+    name: dubbo
+    port: 20980
+  consumer:
+    check: false
+
+mybatis-plus:
+  mapper-locations: classpath:xml/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  redis:
+    host: 129.211.77.216
+    database: 0
+    port: 6379

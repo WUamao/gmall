@@ -98,7 +98,6 @@ public class UmsAdminController {
      * public Object login(@RequestBody UmsAdminLoginParam umsAdminLoginParam)
      * 2、如果前端发过来的是k=v&k=v符串，要封装对象。
      * public Object login(UmsAdminLoginParam umsAdminLoginParam)
-     *
      */
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
