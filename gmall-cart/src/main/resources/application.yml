@@ -1,0 +1,15 @@
+dubbo:
+  registry:
+    address: zookeeper://129.211.77.216:2181
+  application:
+    name: gmall-cart
+  protocol:
+    name: dubbo
+    port: 40880
+  consumer:
+    timeout: 6000
+    check: false
+
+spring:
+  redis:
+    host: 129.211.77.216
