@@ -1,6 +1,9 @@
 package com.amao.gmall.cart.service;
 
+import com.amao.gmall.vo.cart.CartItem;
 import com.amao.gmall.vo.cart.CartResponse;
+
+import java.util.List;
 
 /**
  * @author amao
@@ -60,4 +63,19 @@ public interface CartService  {
      * @return
      */
     CartResponse checkCartItems(String skuIds, Integer ops, String cartKey, String accessToken);
+
+    /**
+     * 获取某个用户的购物车中选中的商品
+     * @param accessToken
+     * @return
+     */
+    List<CartItem> getCartItemForOrder(String accessToken);
+
+    /**
+     * 下单后后删除CartItem
+     * @param accessToken
+     * @param skuIds
+     * @return
+     */
+    void removeCartItem(String accessToken, List<Long> skuIds);
 }

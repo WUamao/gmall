@@ -217,6 +217,43 @@ public class CartServiceImpl implements CartService {
         return cartResponse;
     }
 
+
+    @Override
+    public List<CartItem> getCartItemForOrder(String accessToken) {
+
+        ArrayList<CartItem> cartItmes = new ArrayList<>();
+
+        //1、根据用户的accessToken获取到购物车中被选中的数据
+        UserCartKey userCartKey = memberComponent.getCartKey(accessToken, null);
+        RMap<String, String> cart = redissonClient.getMap(userCartKey.getFinalCartKey());
+
+        String checkItemJson = cart.get(CartConstant.CART_CHECKED_KEY);
+        Set<Long> items = JSON.parseObject(checkItemJson, new TypeReference<Set<Long>>() {
+        });
+
+        items.forEach((item)->{
+            String itemJson = cart.get(item.toString());
+            cartItmes.add(JSON.parseObject(itemJson,CartItem.class));
+        });
+
+        return cartItmes;
+    }
+
+    @Override
+    public void removeCartItem(String accessToken, List<Long> skuIds) {
+        UserCartKey userCartKey = memberComponent.getCartKey(accessToken, null);
+        String finalCartKey = userCartKey.getFinalCartKey();
+        RMap<Object, Object> map = redissonClient.getMap(finalCartKey);
+
+        skuIds.forEach((id)->{
+            //移除商品项
+            map.remove(id.toString());
+        });
+        //移除勾选的状态保存
+        map.put(CartConstant.CART_CHECKED_KEY,JSON.toJSONString(new LinkedHashSet<Long>()));
+    }
+
+
     private void checkItem(List<Long> skuIdsList, boolean checked, String finalCartKey) {
 
         RMap<String , String> cart = redissonClient.getMap(finalCartKey);
